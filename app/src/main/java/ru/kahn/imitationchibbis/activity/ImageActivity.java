@@ -2,13 +2,9 @@ package ru.kahn.imitationchibbis.activity;
 
 import android.os.Bundle;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.squareup.picasso.Picasso;
-
 import ru.kahn.imitationchibbis.R;
-import ru.kahn.imitationchibbis.other.CircularTransformation;
 
 public class ImageActivity extends AppCompatActivity {
 

@@ -1,14 +1,19 @@
 package ru.kahn.imitationchibbis.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,8 +36,10 @@ public class FragmentRestaurants extends Fragment {
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefresh;
     private AdapterFragmentRestaurants adapter;
+    private EditText inputSearch;
 
-    List<ModelRestaurants> arrayListRestaurants = new ArrayList<>();
+    private List<ModelRestaurants> arrayListRestaurants = new ArrayList<>();
+    private List<ModelRestaurants> arrayListRestaurantsArray = new ArrayList<>();
 
     @Override
     public void onAttach(Context context) {
@@ -54,6 +62,9 @@ public class FragmentRestaurants extends Fragment {
                 }
             }
         };
+
+        setHasOptionsMenu(true);
+
         adapter = new AdapterFragmentRestaurants(arrayListRestaurants);
         recyclerView = view.findViewById(R.id.rv_fragment_restaurants);
         recyclerView.setLayoutManager(layoutManager);
@@ -68,6 +79,8 @@ public class FragmentRestaurants extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+        inputSearch = view.findViewById(R.id.et_search);
+        inputSearch.addTextChangedListener(textWatcher);
 
         return view;
     }
@@ -79,6 +92,7 @@ public class FragmentRestaurants extends Fragment {
             public void onResponse(Call<List<ModelRestaurants>> call, Response<List<ModelRestaurants>> response) {
                 if(response.isSuccessful() && response.body() != null) {
                     arrayListRestaurants.addAll(response.body());
+                    arrayListRestaurantsArray.addAll(response.body());
                 } else {
                     Log.e("notSuccessful", response.message());
                 }
@@ -93,4 +107,35 @@ public class FragmentRestaurants extends Fragment {
             }
         });
     }
+
+    private boolean isSearchArray(ModelRestaurants item, String searchText) {
+        boolean result = false;
+        String[] name = item.getName().split(" ");
+        for (String s : name) {
+            result = result || s.regionMatches(true, 0, searchText, 0, searchText.length());
+        }
+        return result;
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @SuppressLint("NewApi")
+        @Override
+        public void onTextChanged(CharSequence newText, int start, int before, int count) {
+            arrayListRestaurants.clear();
+            for(ModelRestaurants item : arrayListRestaurantsArray) {
+                if (isSearchArray(item, String.valueOf(newText))) {
+                    arrayListRestaurants.add(item);
+                }
+                Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
 }
