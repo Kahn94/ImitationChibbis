@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="2dp"
+    card_view:cardCornerRadius="24dp"
+    card_view:cardElevation="0dp">
+
+    <RelativeLayout
+        android:id="@+id/item_main_layout_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/item_main_reviews_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="8dp"
+            tools:background="@drawable/ic_item_like" />
+
+        <TextView
+            android:id="@+id/item_main_reviews_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/item_main_reviews_image"
+            android:layout_toRightOf="@+id/item_main_reviews_image"
+
+            tools:text="Екатерина о ресторане Крок" />
+
+        <TextView
+            android:id="@+id/item_main_reviews_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_main_reviews_name"
+            android:layout_toEndOf="@+id/item_main_reviews_image"
+            android:layout_toRightOf="@+id/item_main_reviews_image"
+            tools:text="Все как всегда вкусно! Но пиццу подсолить надо)" />
+
+        <TextView
+            android:id="@+id/item_main_reviews_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_main_reviews_message"
+            android:layout_toEndOf="@+id/item_main_reviews_image"
+            android:layout_toRightOf="@+id/item_main_reviews_image"
+            android:textSize="15sp"
+            tools:text="2020-02-21T14:37:51.367" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

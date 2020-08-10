@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="2dp"
+    card_view:cardCornerRadius="24dp"
+    card_view:cardElevation="0dp">
+
+    <RelativeLayout
+        android:id="@+id/item_main_layout_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/item_main_restaurant_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="8dp"
+            tools:background="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/item_main_restaurant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/item_main_restaurant_image"
+            android:layout_toRightOf="@+id/item_main_restaurant_image"
+            android:textSize="22sp"
+            tools:text="AGAMA" />
+
+        <TextView
+            android:id="@+id/item_main_restaurant_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_main_restaurant_name"
+            android:layout_toEndOf="@+id/item_main_restaurant_image"
+            android:layout_toRightOf="@+id/item_main_restaurant_image"
+            android:textSize="15sp"
+            tools:text="Пицца / Суши" />
+
+        <ImageView
+            android:id="@+id/item_main_image_like"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toEndOf="@+id/item_main_restaurant_image"
+            android:layout_toRightOf="@+id/item_main_restaurant_image"
+            android:layout_below="@id/item_main_restaurant_message"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_item_like"/>
+
+        <TextView
+            android:id="@+id/item_main_restaurant_persent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_main_restaurant_message"
+            android:layout_toEndOf="@+id/item_main_image_like"
+            android:layout_toRightOf="@+id/item_main_image_like"
+            android:textSize="15sp"
+            tools:text="100%" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

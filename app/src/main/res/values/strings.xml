@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ImitationChibbis</string>
+
+    <string name="restaurants">Рестораны</string>
+    <string name="hits">Хиты</string>
+    <string name="reviews">Отзывы</string>
+
+    <string name="created">Created by Kahn</string>
+</resources>
