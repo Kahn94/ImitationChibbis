@@ -1,5 +1,6 @@
 package ru.kahn.imitationchibbis.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -21,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
     final Fragment fragmentRestaurants = new FragmentRestaurants();
     final Fragment fragmentHits = new FragmentHits();
     final Fragment fragmentReviews = new FragmentReviews();
-    final FragmentManager fm = getSupportFragmentManager();
+    FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragmentRestaurants;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
